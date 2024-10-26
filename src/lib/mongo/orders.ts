@@ -71,3 +71,13 @@ export async function getOrderById(id: string) {
         throw new Error(error)
     }
 }
+
+export async function getPendingOrders() {
+    try {
+        await init()
+        const result = await orders.find({ status: 'pending' }).toArray()
+        return JSON.stringify(result)
+    } catch (error: any) {
+        throw new Error(error)
+    }
+}
